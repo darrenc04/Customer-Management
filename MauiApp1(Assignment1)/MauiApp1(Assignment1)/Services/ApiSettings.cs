@@ -3,7 +3,7 @@
 public static class ApiSettings
 {
     //must match the port of the http server, which is set in the launchSettings.json file of the API project
-    private const int Port = 5108;
+    private const int Port = 7200;
 
     // Android emulator: 10.0.2.2 means "the PC running the emulator".
     // Windows app / iOS simulator: localhost is the PC itself.
@@ -31,7 +31,7 @@ public static class ApiSettings
                     : $"http://{PcAddress}:{Port}/";   // Real iOS device
             }
 
-            return $"http://localhost:{Port}/";        // Windows app or other platforms
+            return $"https://localhost:{Port}/";        // Windows app or other platforms
         }
     }
 }
