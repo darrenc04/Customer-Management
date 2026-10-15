@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiApp1_Assignment1_.Views.CustomerEditPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding PageTitle}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="6">
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                IsVisible="{Binding HasError}" />
+
+            <Label Text="Username" FontAttributes="Bold" />
+            <Entry
+                Text="{Binding Username}"
+                Placeholder="e.g. john_tan"
+                MaxLength="50" />
+            <Label
+                Text="{Binding UsernameError}"
+                TextColor="Red"
+                FontSize="12"
+                IsVisible="{Binding HasUsernameError}" />
+
+            <Label Text="Age" FontAttributes="Bold" Margin="0,8,0,0" />
+            <Entry
+                Text="{Binding AgeText}"
+                Placeholder="1 to 120"
+                Keyboard="Numeric"
+                MaxLength="3" />
+            <Label
+                Text="{Binding AgeError}"
+                TextColor="Red"
+                FontSize="12"
+                IsVisible="{Binding HasAgeError}" />
+
+            <Label Text="Contact number" FontAttributes="Bold" Margin="0,8,0,0" />
+            <Entry
+                Text="{Binding Contact}"
+                Placeholder="8 to 11 digits"
+                Keyboard="Telephone"
+                MaxLength="12" />
+            <Label
+                Text="{Binding ContactError}"
+                TextColor="Red"
+                FontSize="12"
+                IsVisible="{Binding HasContactError}" />
+
+            <Label Text="Email" FontAttributes="Bold" Margin="0,8,0,0" />
+            <Entry
+                Text="{Binding Email}"
+                Placeholder="name@example.com"
+                Keyboard="Email"
+                MaxLength="50" />
+            <Label
+                Text="{Binding EmailError}"
+                TextColor="Red"
+                FontSize="12"
+                IsVisible="{Binding HasEmailError}" />
+
+            <Button
+                Text="Save"
+                Margin="0,16,0,0"
+                Command="{Binding SaveCommand}"
+                IsEnabled="{Binding IsNotBusy}" />
+
+            <Button
+                Text="Cancel"
+                BackgroundColor="Gray"
+                TextColor="White"
+                Command="{Binding CancelCommand}" />
+
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

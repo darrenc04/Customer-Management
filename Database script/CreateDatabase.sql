@@ -1,0 +1,3 @@
+﻿IF DB_ID('CustomerDB') IS NULL
+   CREATE DATABASE CustomerDB;
+GO

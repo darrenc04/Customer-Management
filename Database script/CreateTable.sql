@@ -1,0 +1,19 @@
+﻿USE CustomerDB;
+GO
+
+IF OBJECT_ID('dbo.Customer', 'U') IS NOT NULL
+   DROP TABLE dbo.Customer;
+GO
+
+CREATE TABLE dbo.Customer
+(
+	CustomerID INT IDENTITY(1,1) PRIMARY KEY,
+	Username NVARCHAR(50)	NOT NULL UNIQUE,
+	Age INT					NOT NULL,
+	Contact NVARCHAR(12)	NOT NULL,
+	Email NVARCHAR(50)		NOT NULL,
+	CreatedBy NVARCHAR(128) NOT NULL DEFAULT N'admin',
+	CreatedDate DATETIME2(0) NOT NULL DEFAULT SYSDATETIME(),
+	LastUpdate DATETIME2(0) NULL
+);
+GO

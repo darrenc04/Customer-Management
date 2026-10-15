@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiApp1_Assignment1_.Views.CustomerListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:MauiApp1_Assignment1_.ViewModels"
+    Title="Customers">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid
+        Padding="12"
+        RowDefinitions="Auto,Auto,*,Auto"
+        RowSpacing="8">
+
+        <SearchBar
+            Grid.Row="0"
+            Placeholder="Search username"
+            Text="{Binding SearchText}" />
+
+        <VerticalStackLayout Grid.Row="1" Spacing="4">
+            <Border
+                BackgroundColor="#2E7D32"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 6"
+                Padding="10"
+                IsVisible="{Binding HasActionMessage}">
+                <Label Text="{Binding ActionMessage}" TextColor="White"/>
+            </Border>
+
+            <Label
+                Text="{Binding StatusMessage}"
+                TextColor="Gray"
+                IsVisible="{Binding HasStatusMessage}"/>
+        </VerticalStackLayout>
+
+        <RefreshView
+            Grid.Row="2"
+            IsRefreshing="{Binding IsRefreshing}"
+            Command="{Binding RefreshCommand}">
+
+            <CollectionView
+                ItemsSource="{Binding Customers}"
+                SelectionMode="None">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Padding="12"
+                            Margin="0,0,0,8"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="{AppThemeBinding Light=LightGray, Dark=#555555}">
+
+                            <VerticalStackLayout Spacing="3">
+                                <Label
+                                    Text="{Binding Username}"
+                                    FontSize="18"
+                                    FontAttributes="Bold" />
+                                <Label Text="{Binding Email}" />
+                                <Label Text="{Binding Contact}" />
+                                <Label Text="{Binding AgeText}" />
+                                <Label
+                                    Text="{Binding CreatedText}"
+                                    FontSize="12"
+                                    TextColor="Gray" />
+                                <Label
+                                    Text="{Binding LastUpdateText}"
+                                    FontSize="12"
+                                    TextColor="Gray" />
+
+                                <HorizontalStackLayout Spacing="10" Margin="0,8,0,0">
+                                    <Button
+                                        Text="Edit"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CustomerListViewModel}}, Path=EditCommand}"
+                                        CommandParameter="{Binding .}" />
+                                    <Button
+                                        Text="Delete"
+                                        BackgroundColor="Firebrick"
+                                        TextColor="White"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CustomerListViewModel}}, Path=DeleteCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <ActivityIndicator
+            Grid.Row="2"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center" />
+
+        <Button
+            Grid.Row="3"
+            Text="+ Add Customer"
+            Command="{Binding AddCommand}" />
+    </Grid>
+</ContentPage>

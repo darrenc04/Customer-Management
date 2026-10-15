@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MauiApp1_Assignment1_.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Login"
+    Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30"
+            Spacing="15"
+            VerticalOptions="Center">
+
+            <Label
+                Text="Customer Management"
+                FontSize="26"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Please log in to continue"
+                TextColor="Gray"
+                HorizontalOptions="Center" />
+
+            <Entry
+                Placeholder="Username"
+                Text="{Binding Username}"
+                Keyboard="Plain"
+                ReturnType="Next" />
+
+            <Entry
+                Placeholder="Password"
+                Text="{Binding Password}"
+                IsPassword="True"
+                ReturnType="Done"
+                ReturnCommand="{Binding LoginCommand}" />
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="Red"
+                IsVisible="{Binding HasError}" />
+
+            <Button
+                Text="Login"
+                Command="{Binding LoginCommand}"
+                IsEnabled="{Binding IsNotBusy}" />
+
+            <ActivityIndicator
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
